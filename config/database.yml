@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  port: 5432
+  pool: 25
+ 
+development:
+  <<: *default
+  database: babywatch_dev 
+ 
+test:
+  <<: *default
+  host: <%= ENV.fetch('DB_ADDRESS', 'localhost') %>
+  username: <%= ENV.fetch('DB_USERNAME', '') %>
+  password: <%= ENV.fetch('DB_PASSWORD', '') %>
+  database: babywatch_test
+
+production:
+  <<: *default
+  database: babywatch
+  username: babywatch
