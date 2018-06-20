@@ -1,0 +1,24 @@
+.feeding{
+    font-size: 13em;
+    width:100%;
+}
+.next{
+    color: white;
+}
+.previous{
+    color: green;
+}
+body{
+    color: yellow;
+    background-color: black;
+}
+.title{
+    font-size: 3em;
+    text-transform: uppercase;
+}
+.time{
+    color: white;
+}
+.expired{
+    color: red;
+}

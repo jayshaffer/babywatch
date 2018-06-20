@@ -1,0 +1,1 @@
+{"version":3,"file":"tracker-b09d4287c84413072e56d0652d7633d7.css","sources":["webpack:///./app/javascript/shared/components/Feedings/index.css"],"sourcesContent":[".feeding{\n    font-size: 15em;\n    width:100%;\n}\n\n\n// WEBPACK FOOTER //\n// ./app/javascript/shared/components/Feedings/index.css"],"mappings":"AAAA;AACA;AACA;AACA","sourceRoot":""}
