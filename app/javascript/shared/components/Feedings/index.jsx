@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import Feeding from './feeding'
 import classNames from 'classnames'
+import Button from './button'
 
 class Feedings extends React.Component{
 
@@ -13,12 +14,16 @@ class Feedings extends React.Component{
     }
 
     componentWillMount(){
-        axios.get('/api/v1/feedings').then((response) => {
-            this.setState(...this.state, {feedings: response.data.feedings})
-        })
+        this.refresh()
         setInterval(() => {
             this.setState(...this.state, {time: this.currentTimeFormatted()})
         }, 1000)
+    }
+
+    refresh(){
+        axios.get('/api/v1/feedings').then((response) => {
+            this.setState(...this.state, {feedings: response.data.feedings})
+        })
     }
 
     currentTime(){
@@ -26,7 +31,7 @@ class Feedings extends React.Component{
     }
 
     currentTimeFormatted(){
-        return this.currentTime().format('hh:mm ss A')
+        return this.currentTime().tz('America/Denver').format('hh:mm ss A')
     }
 
     nextScheduled(){
@@ -34,26 +39,38 @@ class Feedings extends React.Component{
         if(this.state.feedings.length > 0){
             time = moment(this.state.feedings[0].createdAt).add(2, 'hours')
         }
-        return <Feeding className={classNames('next', {'expired': time > this.currentTime()})} time={time}></Feeding> 
+        return <Feeding className={classNames('next', {'expired': time < this.currentTime()})} time={time}></Feeding> 
+    }
+
+    lastFeeding(){
+        if(this.state.feedings.length > 0){
+            return <Feeding className="previous" time={this.state.feedings[0].createdAt}></Feeding> 
+        }
+        else{
+            return null
+        }
+    }
+
+    createNewFeeding(){
+        axios.post('/api/v1/feedings')
+        .then(() => {
+           this.refresh() 
+        })
     }
 
     render(){
         return(
             <div>
                 <div>
-                    Current Time: <div className="time"> {this.state.time}</div>
-                </div>
-                <div>
-                    <div className="title"> Next Feeding</div>
+                    <div className="title">
+                        Next
+                        <Button onClick={() => {this.createNewFeeding()}}></Button>
+                     </div>
                     {this.nextScheduled()}
                 </div>
                 <div>
-                    <div className="title"> Past Feedings</div>
-                    {this.state.feedings.map((feeding, index) => {
-                        return (
-                           <Feeding className="previous" key={index} time={feeding.createdAt}></Feeding> 
-                        )
-                    })}
+                    <div className="title"> Last Feeding</div>
+                    {this.lastFeeding()}
                 </div>
             </div>
             

@@ -1,0 +1,26 @@
+.feeding{
+    font-size: 7em;
+    width:100%;
+}
+.next{
+    color: white;
+}
+.previous{
+    color: green;
+}
+body{
+    max-width: 480px;
+    color: yellow;
+    background-color: black;
+}
+.title{
+    font-size: 3em;
+    text-transform: uppercase;
+}
+.time{
+    color: white;
+}
+.expired{
+    color: red;
+}
+/*# sourceMappingURL=tracker-eb101dad77048595a113ea168bc5e301.css.map*/

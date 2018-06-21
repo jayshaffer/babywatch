@@ -4,7 +4,7 @@
 .feeding-detail{
     font-size: 3.5em;
     width:100%;
-    letter-spacing: 20px;
+    letter-spacing: 30px;
 }
 .feeding{
     padding-top: 2px;
@@ -17,7 +17,7 @@
     color: green;
 }
 body{
-    max-width: 460px;
+    max-width: 1440x;
     color: yellow;
     background-color: black;
 }
@@ -34,13 +34,10 @@ body{
 .button{
     color: white;
     background-color: blue;
-    display: inline-block;
     border-radius: 2px;
-    height: 30px;
-    vertical-align: middle;
-    width: 300px;
+    width: 460px;
     height: 50px;
-    margin: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+/*# sourceMappingURL=tracker-12432ed597a649d6db1dfccef432b8c4.css.map*/

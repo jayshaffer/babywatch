@@ -34,13 +34,10 @@ body{
 .button{
     color: white;
     background-color: blue;
-    display: inline-block;
     border-radius: 2px;
-    height: 30px;
-    vertical-align: middle;
-    width: 300px;
+    width: 450px;
     height: 50px;
-    margin: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+/*# sourceMappingURL=tracker-d07c51a0644eaf034679342c30db40cb.css.map*/
