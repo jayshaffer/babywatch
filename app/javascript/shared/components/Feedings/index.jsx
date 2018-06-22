@@ -10,7 +10,11 @@ class Feedings extends React.Component{
 
     constructor(props){
         super(props)
-        this.state = {feedings: [], time: this.currentTimeFormatted()}
+        this.state = {
+            feedings: [], 
+            time: this.currentTimeFormatted(),
+            working: false
+        }
     }
 
     componentWillMount(){
@@ -52,13 +56,26 @@ class Feedings extends React.Component{
     }
 
     createNewFeeding(){
+        this.setState({...this.state, working: true})
         axios.post('/api/v1/feedings')
         .then(() => {
            this.refresh() 
+           this.setState({...this.state, working: false})
+        })
+        .catch(() => {
+           this.setState({...this.state, working: false})
         })
     }
 
+
     render(){
+        if(this.state.working){
+            return (
+                <div className="working">
+                    Saving
+                </div>
+            )
+        }
         return(
             <div>
                 <div>
