@@ -41,7 +41,7 @@ class Feedings extends React.Component{
     nextScheduled(){
         let time = moment()
         if(this.state.feedings.length > 0){
-            time = moment(this.state.feedings[0].createdAt).add(2, 'hours')
+            time = moment(this.state.feedings[0].createdAt).add(3, 'hours')
         }
         return <Feeding className={classNames('next', {'expired': time < this.currentTime()})} time={time}></Feeding> 
     }
